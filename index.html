@@ -978,156 +978,177 @@ docXml=before.slice(0,dollarRun)+boldRun+docXml.slice(mi);
 function xmlEsc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 for(const[key,val]of Object.entries(replacements)){docXml=docXml.split(`{{${key}}}`).join(xmlEsc(val));}zip.file("word/document.xml",docXml);return await zip.generateAsync({type:"blob",mimeType:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});}function downloadBlob(blob,filename){const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}// ─── STYLES ─────────────────────────────────────────────────────────────────
 const styles=`
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── Light theme (default) ── */
+  /* ── Light theme ── */
   :root {
-    --bg:         #f5f7fa;
+    --bg:         #fdfdfd;
     --surface:    #ffffff;
-    --surface2:   #f0f2f6;
-    --border:     #e2e6ed;
-    --border2:    #cdd2db;
-    --text:       #0f1623;
-    --text2:      #4b5563;
-    --text3:      #9ca3af;
-    --accent:     #4f46e5;
-    --accent-h:   #4338ca;
-    --accent-s:   rgba(79,70,229,0.08);
-    --accent-t:   rgba(79,70,229,0.15);
+    --surface2:   #f8fafc;
+    --border:     #f1f5f9;
+    --border2:    #e2e8f0;
+    --text:       #020617;
+    --text2:      #475569;
+    --text3:      #94a3b8;
+    --accent:     #0f172a; 
+    --accent-h:   #334155;
+    --accent-s:   rgba(15, 23, 42, 0.04);
+    --accent-t:   rgba(15, 23, 42, 0.08);
     --green:      #059669;
-    --red:        #dc2626;
+    --red:        #e11d48;
     --amber:      #d97706;
-    --shadow:     0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
-    --shadow-lg:  0 4px 24px rgba(0,0,0,0.12);
-    --radius:     10px;
+    --shadow:     0 2px 4px rgba(0,0,0,0.02), 0 10px 30px rgba(0,0,0,0.04);
+    --shadow-lg:  0 10px 40px rgba(0,0,0,0.08);
+    --radius:     12px;
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 
   /* ── Dark theme ── */
   html[data-theme="dark"] {
-    --bg:         #0e1117;
-    --surface:    #161b27;
-    --surface2:   #1c2333;
-    --border:     #2a3042;
-    --border2:    #323a50;
-    --text:       #e2e8f0;
+    --bg:         #020617;
+    --surface:    #0f172a;
+    --surface2:   #1e293b;
+    --border:     #1e293b;
+    --border2:    #334155;
+    --text:       #f8fafc;
     --text2:      #94a3b8;
-    --text3:      #4b5563;
-    --accent:     #6366f1;
-    --accent-h:   #4f46e5;
-    --accent-s:   rgba(99,102,241,0.12);
-    --accent-t:   rgba(99,102,241,0.2);
+    --text3:      #475569;
+    --accent:     #f8fafc;
+    --accent-h:   #cbd5e1;
+    --accent-s:   rgba(248, 250, 252, 0.08);
+    --accent-t:   rgba(248, 250, 252, 0.15);
     --green:      #10b981;
-    --red:        #ef4444;
-    --amber:      #f59e0b;
-    --shadow:     0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.25);
-    --shadow-lg:  0 4px 32px rgba(0,0,0,0.5);
+    --red:        #fb7185;
+    --amber:      #fbbf24;
+    --shadow:     0 4px 6px -1px rgba(0,0,0,0.2), 0 2px 4px -1px rgba(0,0,0,0.1);
+    --shadow-lg:  0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.2);
   }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-body);
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
   }
 
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
 
   /* ── App shell ── */
   .app { min-height: 100vh; display: flex; flex-direction: column; }
 
   /* ── Header ── */
   .header {
-    background: var(--surface);
+    background: rgba(var(--surface), 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 0 20px;
-    height: 52px;
+    padding: 0 24px;
+    height: 64px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     flex-shrink: 0;
     position: sticky;
     top: 0;
     z-index: 50;
   }
   .header-logo {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    border-radius: 7px;
+    width: 32px; height: 32px;
+    background: var(--text);
+    border-radius: 9px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 700; color: white; flex-shrink: 0;
+    font-size: 15px; font-weight: 800; color: var(--bg); flex-shrink: 0;
+    font-family: var(--font-display);
   }
-  .header-title { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
-  .header-sub { font-size: 12px; color: var(--text3); margin-left: auto; }
-  .main { flex: 1; display: flex; min-height: 0; }
-  .content { flex: 1; overflow: hidden; }
+  .header-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; }
+  .header-sub { font-size: 11px; font-weight: 600; color: var(--text3); margin-left: auto; text-transform: uppercase; letter-spacing: 0.1em; }
 
-  /* ── Theme toggle ── */
   .theme-toggle {
-    width: 36px; height: 36px;
+    width: 40px; height: 40px;
     border: 1px solid var(--border);
-    background: var(--surface2);
-    border-radius: 8px;
+    background: var(--surface);
+    border-radius: 10px;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    transition: background 0.15s, border-color 0.15s;
+    font-size: 18px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
-    margin-left: 8px;
+    margin-left: 12px;
+    box-shadow: var(--shadow);
   }
-  .theme-toggle:hover { background: var(--border); }
+  .theme-toggle:hover { border-color: var(--text3); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
 
-  /* ── Hamburger ── */
-  .hamburger { width: 34px; height: 34px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; border: none; background: transparent; padding: 0; border-radius: 7px; transition: background 0.15s; flex-shrink: 0; }
-  .hamburger:hover { background: var(--surface2); }
-  .hamburger span { display: block; width: 16px; height: 1.5px; background: var(--text2); border-radius: 2px; transition: all 0.22s cubic-bezier(.4,0,.2,1); transform-origin: center; }
-  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--text); }
+  .hamburger { width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); padding: 0; border-radius: 10px; transition: all 0.2s; flex-shrink: 0; box-shadow: var(--shadow); }
+  .hamburger span { display: block; width: 18px; height: 1.5px; background: var(--text); border-radius: 2px; transition: all 0.3s cubic-bezier(.4,0,.2,1); transform-origin: center; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); width: 20px; }
   .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--text); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); width: 20px; }
 
-  /* ── Drawer ── */
-  .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(4px); z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .drawer-overlay { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
   .drawer-overlay.open { opacity: 1; pointer-events: all; }
-  .drawer { position: fixed; top: 0; left: 0; bottom: 0; width: 260px; background: var(--surface); border-right: 1px solid var(--border); z-index: 101; transform: translateX(-100%); transition: transform 0.26s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; box-shadow: var(--shadow-lg); }
+  .drawer { 
+    position: fixed; top: 12px; left: 12px; bottom: 12px; width: 280px; 
+    background: var(--surface); 
+    border: 1px solid var(--border); 
+    border-radius: 20px;
+    z-index: 101; 
+    transform: translateX(-110%); 
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    display: flex; flex-direction: column; 
+    box-shadow: var(--shadow-lg); 
+  }
   .drawer.open { transform: translateX(0); }
-  .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--border); }
-  .drawer-logo { display: flex; align-items: center; gap: 9px; }
-  .drawer-logo-box { width: 26px; height: 26px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
-  .drawer-logo-text { font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
-  .drawer-close { width: 26px; height: 26px; border: none; background: var(--surface2); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text2); transition: all 0.15s; }
-  .drawer-close:hover { background: var(--border); color: var(--text); }
-  .drawer-body { flex: 1; overflow-y: auto; padding: 14px 10px; }
-  .drawer-section { margin-bottom: 22px; }
-  .drawer-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--text3); text-transform: uppercase; margin-bottom: 4px; padding: 0 8px; }
-  .drawer-item { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 7px; cursor: pointer; font-size: 13px; color: var(--text2); transition: all 0.13s; margin-bottom: 1px; }
-  .drawer-item:hover { background: var(--surface2); color: var(--text); }
-  .drawer-item.active { background: var(--accent-s); color: var(--accent); font-weight: 500; }
-  .drawer-item-icon { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; opacity: 0.7; }
-  .drawer-item.active .drawer-item-icon { opacity: 1; }
-  .drawer-badge { margin-left: auto; font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 99px; letter-spacing: 0.05em; text-transform: uppercase; }
-  .drawer-footer { padding: 14px 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text3); }
+  .drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--border); }
+  .drawer-logo-text { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+  .drawer-close { width: 32px; height: 32px; border: none; background: var(--surface2); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text2); transition: all 0.2s; }
+  .drawer-body { flex: 1; overflow-y: auto; padding: 20px 12px; }
+  .drawer-section { margin-bottom: 32px; }
+  .drawer-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase; margin-bottom: 12px; padding: 0 16px; }
+  .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--text2); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 2px; }
+  .drawer-item:hover { background: var(--surface2); color: var(--text); transform: translateX(4px); }
+  .drawer-item.active { background: var(--text); color: var(--bg); font-weight: 600; box-shadow: var(--shadow); }
+  .drawer-item-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .drawer-badge { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; letter-spacing: 0.05em; text-transform: uppercase; background: var(--surface2); color: var(--text3); }
+  .drawer-footer { padding: 20px 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text3); font-weight: 500; }
 
-  /* ── Home page ── */
-  .page { max-width: 840px; margin: 0 auto; padding: 44px 32px; overflow-y: auto; height: calc(100vh - 52px); }
-  .page-title { font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 6px; letter-spacing: -0.02em; }
-  .page-sub { font-size: 14px; color: var(--text2); margin-bottom: 36px; }
+  .page { max-width: 960px; margin: 0 auto; padding: 64px 40px; overflow-y: auto; height: calc(100vh - 64px); scroll-behavior: smooth; }
+  .page-title { font-size: 40px; font-weight: 800; color: var(--text); margin-bottom: 8px; letter-spacing: -0.04em; line-height: 1.1; }
+  .page-sub { font-size: 16px; font-weight: 500; color: var(--text2); margin-bottom: 48px; letter-spacing: -0.01em; }
 
-  /* ── Cards ── */
-  .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; position: relative; overflow: hidden; box-shadow: var(--shadow); }
-  .card:hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent-t), var(--shadow-lg); transform: translateY(-2px); }
-  .card-accent { width: 32px; height: 3px; border-radius: 99px; margin-bottom: 14px; }
-  .card-icon { font-size: 24px; margin-bottom: 10px; }
-  .card-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
-  .card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; }
-  .card-badge { position: absolute; top: 14px; right: 14px; font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 99px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } }
+  .card { 
+    background: var(--surface); 
+    border: 1px solid var(--border); 
+    border-radius: 24px; 
+    padding: 32px; 
+    cursor: pointer; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    position: relative; 
+    overflow: hidden; 
+    box-shadow: var(--shadow); 
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+  }
+  .card:hover { border-color: var(--text); transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-lg); }
+  .card-accent { position: absolute; top: 0; left: 0; right: 0; height: 6px; opacity: 0.8; }
+  .card-icon { font-size: 32px; margin-bottom: 24px; }
+  .card-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.02em; }
+  .card-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
+  .card-badge { position: absolute; top: 32px; right: 32px; font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
   .badge-blue   { background: rgba(79,70,229,0.1);  color: var(--accent); }
   .badge-purple { background: rgba(139,92,246,0.1); color: #7c3aed; }
   .badge-teal   { background: rgba(5,150,105,0.1);  color: #059669; }
@@ -1172,18 +1193,54 @@ const styles=`
   .resource-remove:hover { background: rgba(220,38,38,0.16); }
 
   /* ── Buttons ── */
-  .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all 0.13s; font-family: 'Inter', sans-serif; }
-  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-  .btn-primary { background: var(--accent); color: white; }
-  .btn-primary:hover:not(:disabled) { background: var(--accent-h); box-shadow: 0 4px 12px var(--accent-t); }
-  .btn-secondary { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
-  .btn-secondary:hover { background: var(--border); color: var(--text); }
-  .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .btn { 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+    padding: 12px 24px; 
+    border-radius: 14px; 
+    font-size: 14px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    border: none; 
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
+    font-family: var(--font-body); 
+  }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; filter: grayscale(1); }
+  
+  .btn-primary { 
+    background: var(--text); 
+    color: var(--bg); 
+    box-shadow: var(--shadow);
+  }
+  .btn-primary:hover:not(:disabled) { 
+    transform: translateY(-2px); 
+    box-shadow: var(--shadow-lg);
+    filter: brightness(1.1); 
+  }
+  
+  .btn-secondary { 
+    background: var(--surface2); 
+    color: var(--text); 
+    border: 1px solid var(--border2); 
+  }
+  .btn-secondary:hover:not(:disabled) { 
+    background: var(--border); 
+    transform: translateY(-1px); 
+  }
+  
+  .btn-outline { 
+    background: transparent; 
+    color: var(--text); 
+    border: 2px solid var(--text); 
+  }
   .btn-outline:hover { background: var(--accent-s); }
+  
   .btn-success { background: var(--green); color: white; }
-  .btn-success:hover { filter: brightness(1.08); }
-  .btn-sm { padding: 6px 12px; font-size: 12px; }
-  .btn-add { background: var(--accent-s); color: var(--accent); border: 1px dashed var(--accent-t); width: 100%; justify-content: center; padding: 9px; border-radius: 7px; font-family: 'Inter', sans-serif; font-size: 13px; }
+  .btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 10px; }
+
+  .btn-add { background: var(--accent-s); color: var(--accent); border: 1px dashed var(--accent-t); width: 100%; justify-content: center; padding: 9px; border-radius: 7px; font-family: var(--font-body); font-size: 13px; }
   .btn-add:hover { background: var(--accent-t); }
 
   /* ── Step bar ── */
@@ -3213,11 +3270,140 @@ function AcquiaSOWForm({onBack, onComplete}) {
   );
 }
 
-function Home({onSelect}){return/*#__PURE__*/React.createElement("div",{className:"page"},/*#__PURE__*/React.createElement("h1",{className:"page-title"},"Document Builder"),/*#__PURE__*/React.createElement("p",{className:"page-sub"},"Create Statements of Work and Change Requests from your Acquia templates"),/*#__PURE__*/React.createElement("div",{className:"card-grid"},/*#__PURE__*//*#__PURE__*/React.createElement("div",{className:"card",onClick:()=>onSelect("acquia-sow")},/*#__PURE__*/React.createElement("div",{className:"card-accent",style:{background:"linear-gradient(90deg, #10b981, #34d399)"}}),/*#__PURE__*/React.createElement("div",{className:"card-badge",style:{background:"#10b98122",color:"#10b981"}},"New"),/*#__PURE__*/React.createElement("div",{className:"card-icon"},"\uD83D\uDCCB"),/*#__PURE__*/React.createElement("div",{className:"card-title"},"Acquia SOW"),/*#__PURE__*/React.createElement("div",{className:"card-desc"},"Standard Acquia SOW with RACI, phases, key personnel, warranty, and closure checklist.")),React.createElement("div",{className:"card",onClick:()=>onSelect("sow")},/*#__PURE__*/React.createElement("div",{className:"card-accent",style:{background:"linear-gradient(90deg, #4f6ef7, #818cf8)"}}),/*#__PURE__*/React.createElement("div",{className:"card-badge badge-blue"},"New"),/*#__PURE__*/React.createElement("div",{className:"card-icon"},"\uD83D\uDCC4"),/*#__PURE__*/React.createElement("div",{className:"card-title"},"CD SOW"),/*#__PURE__*/React.createElement("div",{className:"card-desc"},"Continuous Delivery SOW. Define project scope, timeline, resources, and fees.")),/*#__PURE__*/React.createElement("div",{className:"card",onClick:()=>onSelect("cr")},/*#__PURE__*/React.createElement("div",{className:"card-accent",style:{background:"linear-gradient(90deg, #8b5cf6, #a78bfa)"}}),/*#__PURE__*/React.createElement("div",{className:"card-badge badge-purple"},"New"),/*#__PURE__*/React.createElement("div",{className:"card-icon"},"\uD83D\uDCCB"),/*#__PURE__*/React.createElement("div",{className:"card-title"},"Change Request"),/*#__PURE__*/React.createElement("div",{className:"card-desc"},"Create a standalone CR from scratch to extend hours, timelines, or budget.")),/*#__PURE__*/React.createElement("div",{className:"card",onClick:()=>onSelect("cr-from-sow")},/*#__PURE__*/React.createElement("div",{className:"card-accent",style:{background:"linear-gradient(90deg, #14b8a6, #2dd4bf)"}}),/*#__PURE__*/React.createElement("div",{className:"card-badge badge-teal"},"Smart"),/*#__PURE__*/React.createElement("div",{className:"card-icon"},"\uD83D\uDD17"),/*#__PURE__*/React.createElement("div",{className:"card-title"},"CR from SOW"),/*#__PURE__*/React.createElement("div",{className:"card-desc"},"Extend an existing project. Enter SOW reference details and we'll pre-fill the CR fields.")),/*#__PURE__*/React.createElement("div",{className:"card",onClick:()=>onSelect("cr-from-cr")},/*#__PURE__*/React.createElement("div",{className:"card-accent",style:{background:"linear-gradient(90deg, #f59e0b, #fbbf24)"}}),/*#__PURE__*/React.createElement("div",{className:"card-badge badge-amber"},"Chain"),/*#__PURE__*/React.createElement("div",{className:"card-icon"},"\uD83D\uDD01"),/*#__PURE__*/React.createElement("div",{className:"card-title"},"CR from CR"),/*#__PURE__*/React.createElement("div",{className:"card-desc"},"Project extended again? Build a follow-on CR using a previous CR as the baseline."))),/*#__PURE__*/React.createElement("div",{className:"divider"}),/*#__PURE__*/React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:12}},[["📁 Templates Loaded","SOW and CR templates pre-loaded from your Acquia documents"],["⚡ One-click Generate","Fill the form, click generate — download a ready-to-sign .docx"],["🔗 SOW → CR","Carry project data forward from SOW to avoid re-entering details"],["🔁 CR → CR","Chain multiple extensions — each CR becomes the baseline for the next"]].map(([title,desc])=>/*#__PURE__*/React.createElement("div",{key:title,style:{background:"var(--surface)",border:"1px solid var(--border)",borderRadius:8,padding:16}},/*#__PURE__*/React.createElement("div",{style:{fontSize:13,fontWeight:600,color:"var(--text2)",marginBottom:4}},title),/*#__PURE__*/React.createElement("div",{style:{fontSize:12,color:"var(--text3)"}},desc)))));}// ─── SUCCESS ─────────────────────────────────────────────────────────────────
-function Success({type,onBack,onNew,onFollowOnCR}){return/*#__PURE__*/React.createElement("div",{className:"page"},/*#__PURE__*/React.createElement("div",{className:"success-screen"},/*#__PURE__*/React.createElement("div",{className:"success-icon"},"\u2705"),/*#__PURE__*/React.createElement("div",{className:"success-title"},"Document Generated!"),/*#__PURE__*/React.createElement("div",{className:"success-sub"},"Your ",type==="sow"?"Statement of Work":"Change Request"," has been downloaded. Open it in Microsoft Word to review and finalize signatures."),/*#__PURE__*/React.createElement("div",{style:{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}},/*#__PURE__*/React.createElement("button",{className:"btn btn-secondary",onClick:onBack},"\u2190 Back to Home"),/*#__PURE__*/React.createElement("button",{className:"btn btn-primary",onClick:onNew},"Create Another"),type!=="sow"&&/*#__PURE__*/React.createElement("button",{className:"btn",style:{background:"rgba(245,158,11,0.15)",color:"#f59e0b",border:"1px solid rgba(245,158,11,0.3)"},onClick:onFollowOnCR},"\uD83D\uDD01 Create Follow-on CR"))));}// ─── HELP VIEW ───────────────────────────────────────────────────────────────
-function HelpView({onBack}){const[open,setOpen]=useState(null);const sections=[{id:"overview",icon:"🏠",title:"Overview",color:"var(--accent)",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"This app lets you generate professional ",/*#__PURE__*/React.createElement("strong",null,"Statements of Work (SOW)")," and ",/*#__PURE__*/React.createElement("strong",null,"Change Requests (CR)")," directly from Acquia's official Word templates \u2014 no manual editing required."),/*#__PURE__*/React.createElement("p",{style:{marginTop:10}},"You fill in a form, the app injects your data into the real ",/*#__PURE__*/React.createElement("code",null,".docx")," template, and you download a ready-to-sign Word document. All original formatting, fonts, logos, and page layout are preserved exactly."),/*#__PURE__*/React.createElement("div",{style:{background:"var(--accent-s)",border:"1px solid rgba(79,110,247,0.2)",borderRadius:8,padding:"12px 16px",marginTop:12,fontSize:13,color:"var(--accent)"}},"\uD83D\uDCA1 The live preview on the right updates as you type \u2014 it mirrors the full document structure so you can catch errors before generating."))},{id:"sow",icon:"📄",title:"Creating a New SOW",color:"var(--accent)",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"New SOW")," when starting a brand-new project with a subcontractor. It generates a complete Subcontractor Statement of Work pre-filled with all your project details."),/*#__PURE__*/React.createElement("div",{style:{marginTop:12}},[["Step 1 — Project Details","Enter the effective date, MSA date, subcontractor name, customer name, project name, description, start/end dates, total fee, and the subcontractor's point of contact name and email."],["Step 2 — Resources","Add each staffed resource: their role (e.g. Drupal Front End Developer), name, total hours, and hourly rate. The app auto-calculates the total cost per resource. Add as many rows as needed."],["Step 3 — Review & Generate","Check the live preview on the right matches your expectations, then click Generate & Download SOW. The .docx file downloads immediately."]].map(([title,desc])=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"#4f6ef7",color:"#fff",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},["1","2","3"][["Step 1","Step 2","Step 3"].findIndex(s=>title.startsWith(s))]),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc))))))},{id:"cr-scratch",icon:"📋",title:"Creating a New CR (from scratch)",color:"#8b5cf6",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"New CR")," when you need a standalone Change Request and don't have the SOW data to hand \u2014 you'll enter everything manually."),/*#__PURE__*/React.createElement("div",{style:{marginTop:12}},[["Step 1 — Project Info","Enter the customer name, requestor, project name, original SOW reference number, the new CR number, and any previous CR numbers (enter 'None' if this is the first)."],["Step 2 — Extension Details","Set the original start date, the previous end date (from the SOW or last CR), and the new extended end date. Enter work days added and the effective date of this CR. Then add each resource with their SOW hours, additional CR hours, new total hours, rate, and total budget."],["Step 3 — Impact & Generate","Fill in the effort impact (original hours, additional hours, new total), timeline impact (previous end date, days added, new end date), and budget impact (original budget, increase amount, new total). Then generate."]].map(([title,desc],i)=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"#8b5cf6",color:"#fff",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},i+1),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc))))))},{id:"cr-from-sow",icon:"🔗",title:"CR from SOW (extending a project)",color:"#14b8a6",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"CR from SOW")," when a project that already has an SOW needs to be extended. You enter the original SOW's key details once, and the app pre-fills them into the CR form so you only enter what's ",/*#__PURE__*/React.createElement("em",null,"changing"),"."),/*#__PURE__*/React.createElement("div",{style:{background:"rgba(20,184,166,0.08)",border:"1px solid rgba(20,184,166,0.2)",borderRadius:8,padding:"12px 16px",marginTop:10,marginBottom:14,fontSize:13,color:"#5eead4"}},"\u2713 Fields carried forward: customer name, project name, SOW reference, original start date, current end date, total budget, total hours, and all existing resources."),[["SOW Reference Screen","Enter the details from the original SOW: customer, project name, SOW ID, start date, current end date, original budget, total hours, and existing resources (their current total hours become the baseline in the CR)."],["CR Form","You land on the CR form pre-filled. Add the new CR number, requestor, previous CR reference if any. Then set the new end date, days added, and update each resource's CR hours and new totals. Finally fill in the impact summary."]].map(([title,desc],i)=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"#14b8a6",color:"#fff",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},i+1),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc)))))},{id:"cr-from-cr",icon:"🔁",title:"CR from CR (chaining extensions)",color:"#f59e0b",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"CR from CR")," when a project that already has one or more CRs needs to be extended again. Each CR's totals become the baseline for the next one, and the previous CR number is automatically added to the \"Previous Change Requests\" chain."),/*#__PURE__*/React.createElement("div",{style:{background:"rgba(245,158,11,0.08)",border:"1px solid rgba(245,158,11,0.2)",borderRadius:8,padding:"12px 16px",marginTop:10,marginBottom:14,fontSize:13,color:"#fbbf24"}},"\uD83D\uDD01 Example chain: SOW \u2192 CR-001 \u2192 CR-002 \u2192 CR-003. When creating CR-003, enter CR-002's details here. The \"Previous Change Requests\" field in CR-003 will automatically read \"CR-001, CR-002\"."),[["Previous CR Reference Screen","Enter the most recent CR's details: customer, project, SOW reference, the previous CR numbers, the current CR number you're extending from, its end date, total budget, total hours, and current resources with their total hours."],["New CR Form","The form opens pre-filled. The previous CR's end date becomes the 'Previous End Date'. Resources carry forward with their total hours as the new SOW Hours baseline. You only need to enter the new CR number, new end date, and additional hours/budget."]].map(([title,desc],i)=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"#f59e0b",color:"#fff",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},i+1),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc)))))},{id:"output",icon:"📥",title:"Output & the generated .docx",color:"#059669",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Clicking ",/*#__PURE__*/React.createElement("strong",null,"Generate & Download")," produces a ",/*#__PURE__*/React.createElement("code",null,".docx")," file that is saved to your browser's default download folder."),/*#__PURE__*/React.createElement("div",{style:{marginTop:12,display:"flex",flexDirection:"column",gap:10}},[["File name","SOW files are named SOW_[ProjectName]_[Date].docx. CR files are named CR_[ProjectName]_[CRNumber]_[Date].docx."],["Font fidelity","All injected text uses Arial, matching both templates. The CR template's Proxima Nova is used for all its original fixed text — only the fields you filled in use Arial, which matches how the template was designed."],["Resource tables","Resources are injected as real Word table rows — not plain text — so they render with proper borders, column alignment, and bold totals identical to the template's table style."],["To convert to PDF","Open the .docx in Microsoft Word and use File → Export → PDF. This gives the highest fidelity. LibreOffice conversion also works well since Proxima Nova is fully embedded in the CR template."],["Signatures","The signature table at the bottom is unchanged from the original template — print, sign, and scan, or use an e-signature tool."]].map(([label,desc])=>/*#__PURE__*/React.createElement("div",{key:label,style:{display:"flex",gap:10,fontSize:13}},/*#__PURE__*/React.createElement("div",{style:{color:"#059669",fontWeight:700,flexShrink:0,minWidth:120}},label),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)"}},desc)))))},{id:"tips",icon:"💡",title:"Tips & common questions",color:"var(--text2)",content:/*#__PURE__*/React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:14,fontSize:13}},[["Can I go back and edit?","Yes — use the Previous button to move between steps. All your data is preserved while you navigate the steps within a session."],["What if I make a mistake?","Re-open the same form from the menu. The form resets, so start from Step 1 again. You can generate as many versions as needed."],["The Total Fee field format","Enter it exactly as it should appear in the document, e.g. $120,000.00 or $120,000. The app inserts it verbatim."],["Resource total auto-calc (SOW)","In the SOW resources form, the Total column in the live preview calculates automatically from Hours × Rate. This same value goes into the generated document."],["CR total budget auto-calc","In the CR resources form, if you leave the Total ($) field blank, the app auto-calculates it from New Total Hours × Rate when generating."],["Previous Change Requests","Enter these as a comma-separated list, e.g. CR-001, CR-002. The CR from CR flow does this automatically."],["What gets preserved from the template?","Everything not touched by a placeholder: the Acquia logo, decorative graphics, all fixed clauses and numbered sections, page headers/footers, styles, borders, and table formatting."]].map(([q,a])=>/*#__PURE__*/React.createElement("div",{key:q},/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},"Q: ",q),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",paddingLeft:12,borderLeft:"2px solid var(--border)"}},a))))}];return/*#__PURE__*/React.createElement("div",{className:"page",style:{maxWidth:740}},/*#__PURE__*/React.createElement("div",{style:{display:"flex",alignItems:"center",gap:12,marginBottom:6}},/*#__PURE__*/React.createElement("button",{className:"btn btn-secondary btn-sm",onClick:onBack},"\u2190 Back"),/*#__PURE__*/React.createElement("h1",{className:"page-title",style:{margin:0}},"How to Use")),/*#__PURE__*/React.createElement("p",{className:"page-sub"},"Everything you need to know about creating SOWs and CRs with this app"),/*#__PURE__*/React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:8}},sections.map(s=>/*#__PURE__*/React.createElement("div",{key:s.id,style:{background:"var(--surface)",border:`1px solid ${open===s.id?s.color+"44":"#1e2230"}`,borderRadius:10,overflow:"hidden",transition:"border-color 0.2s"}},/*#__PURE__*/React.createElement("div",{style:{display:"flex",alignItems:"center",gap:14,padding:"16px 20px",cursor:"pointer",userSelect:"none"},onClick:()=>setOpen(open===s.id?null:s.id)},/*#__PURE__*/React.createElement("div",{style:{fontSize:22,flexShrink:0}},s.icon),/*#__PURE__*/React.createElement("div",{style:{flex:1}},/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",fontSize:14}},s.title)),/*#__PURE__*/React.createElement("div",{style:{color:open===s.id?s.color:"var(--text3)",fontSize:18,transition:"transform 0.2s",transform:open===s.id?"rotate(180deg)":"none"}},"\u25BE")),open===s.id&&/*#__PURE__*/React.createElement("div",{style:{padding:"0 20px 20px",color:"var(--text2)",fontSize:13,lineHeight:1.7,borderTop:"1px solid var(--border)",paddingTop:16}},s.content)))));}// ─── NAV DRAWER ──────────────────────────────────────────────────────────────
-function NavDrawer({open,onClose,view,navigate}){const go=v=>{navigate(v);onClose();};const navItems=[{id:"home",label:"Home",icon:/*#__PURE__*/React.createElement(IconHome,null),badge:null,badgeColor:null},{id:"acquia-sow",label:"Acquia SOW",icon:/*#__PURE__*/React.createElement(IconDoc,null),badge:"SOW",badgeColor:"#10b981"},{id:"sow",label:"CD SOW",icon:/*#__PURE__*/React.createElement(IconDoc,null),badge:"CD",badgeColor:"#4f6ef7"},{id:"cr",label:"New CR",icon:/*#__PURE__*/React.createElement(IconDoc,null),badge:"CR",badgeColor:"#8b5cf6"},{id:"cr-from-sow",label:"CR from SOW",icon:/*#__PURE__*/React.createElement(IconDoc,null),badge:"Smart",badgeColor:"#14b8a6"},{id:"cr-from-cr",label:"CR from CR",icon:/*#__PURE__*/React.createElement(IconDoc,null),badge:"Chain",badgeColor:"#f59e0b"},{id:"help",label:"How to Use",icon:/*#__PURE__*/React.createElement(IconHelp,null),badge:null,badgeColor:null}];return/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("div",{className:`drawer-overlay ${open?"open":""}`,onClick:onClose}),/*#__PURE__*/React.createElement("div",{className:`drawer ${open?"open":""}`},/*#__PURE__*/React.createElement("div",{className:"drawer-header"},/*#__PURE__*/React.createElement("div",{className:"drawer-logo"},/*#__PURE__*/React.createElement("div",{className:"drawer-logo-box"},"A"),/*#__PURE__*/React.createElement("div",{className:"drawer-logo-text"},"Acquia Doc Builder")),/*#__PURE__*/React.createElement("button",{className:"drawer-close",onClick:onClose},/*#__PURE__*/React.createElement(IconX,null))),/*#__PURE__*/React.createElement("div",{className:"drawer-body"},/*#__PURE__*/React.createElement("div",{className:"drawer-section"},/*#__PURE__*/React.createElement("div",{className:"drawer-label"},"Navigation"),navItems.map(item=>/*#__PURE__*/React.createElement("div",{key:item.id,className:`drawer-item ${view===item.id?"active":""}`,onClick:()=>go(item.id)},/*#__PURE__*/React.createElement("div",{className:"drawer-item-icon"},item.icon),item.label,item.badge&&/*#__PURE__*/React.createElement("span",{className:"drawer-badge",style:{background:`${item.badgeColor}22`,color:item.badgeColor}},item.badge)))),/*#__PURE__*/React.createElement("div",{className:"drawer-section"},/*#__PURE__*/React.createElement("div",{className:"drawer-label"},"Document Types"),/*#__PURE__*/React.createElement("div",{style:{padding:"0 8px",fontSize:12,color:"var(--text3)",lineHeight:1.6}},/*#__PURE__*/React.createElement("div",{style:{marginBottom:8}},/*#__PURE__*/React.createElement("span",{style:{color:"#10b981",fontWeight:600}},"Acquia SOW")," \u2014 Standard Acquia format with RACI & closure"),/*#__PURE__*/React.createElement("div",{style:{marginBottom:8}},/*#__PURE__*/React.createElement("span",{style:{color:"var(--accent)",fontWeight:600}},"CD SOW")," \u2014 Continuous Delivery Statement of Work"),/*#__PURE__*/React.createElement("div",{style:{marginBottom:8}},/*#__PURE__*/React.createElement("span",{style:{color:"#8b5cf6",fontWeight:600}},"CR")," \u2014 Change Request"),/*#__PURE__*/React.createElement("div",{style:{marginBottom:8}},/*#__PURE__*/React.createElement("span",{style:{color:"#14b8a6",fontWeight:600}},"CR from SOW")," \u2014 Extend a project using SOW data"),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("span",{style:{color:"#f59e0b",fontWeight:600}},"CR from CR")," \u2014 Chain follow-on extensions")))),/*#__PURE__*/React.createElement("div",{className:"drawer-footer"},"Acquia Inc. \xB7 SOW & CR Generator")));}// ─── ROOT APP ────────────────────────────────────────────────────────────────
-function App(){const[view,setView]=useState("home");const[sowPrefill,setSowPrefill]=useState(null);const[lastType,setLastType]=useState("sow");const[menuOpen,setMenuOpen]=useState(false);const[dark,setDark]=useState(false);useEffect(function(){document.documentElement.setAttribute("data-theme",dark?"dark":"light");},[dark]);const[settingsOpen,setSettingsOpen]=useState(false);const[cfgApiKey,setCfgApiKey]=useState(function(){return GDRIVE_CONFIG.apiKey||"";});const[cfgClientId,setCfgClientId]=useState(function(){return GDRIVE_CONFIG.clientId||"";});const[cfgSaved,setCfgSaved]=useState(false);const saveSettings=function(){saveGDriveConfig({apiKey:cfgApiKey.trim(),clientId:cfgClientId.trim()});setCfgSaved(true);setTimeout(function(){setCfgSaved(false);},2500);};const navigate=v=>{if(v==="cr")setSowPrefill(null);setView(v);};const handleBack=()=>setView("home");const handleComplete=type=>{setLastType(type);setView("success");};const handleSOWFromSOWContinue=sowData=>{setSowPrefill(sowData);setView("cr");};const handleCRFromCRContinue=crData=>{setSowPrefill(crData);setView("cr");};return/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("style",null,styles),/*#__PURE__*/React.createElement(NavDrawer,{open:menuOpen,onClose:()=>setMenuOpen(false),view:view,navigate:navigate}),/*#__PURE__*/React.createElement("div",{className:"app"},/*#__PURE__*/React.createElement("div",{className:"header"},/*#__PURE__*/React.createElement("button",{className:`hamburger ${menuOpen?"open":""}`,onClick:()=>setMenuOpen(o=>!o),"aria-label":"Menu"},/*#__PURE__*/React.createElement("span",null),/*#__PURE__*/React.createElement("span",null),/*#__PURE__*/React.createElement("span",null)),/*#__PURE__*/React.createElement("div",{className:"header-logo"},"A"),/*#__PURE__*/React.createElement("div",{className:"header-title"},"Acquia Doc Builder"),/*#__PURE__*/React.createElement("div",{className:"header-sub"},"SOW & CR Generator"),/*#__PURE__*/React.createElement("button",{className:"theme-toggle",onClick:()=>setDark(d=>!d),"aria-label":"Toggle theme",title:dark?"Switch to light mode":"Switch to dark mode"},dark?"\u2600\ufe0f":"\uD83C\uDF19"),/*#__PURE__*/React.createElement("button",{className:"theme-toggle",onClick:function(){setCfgApiKey(GDRIVE_CONFIG.apiKey||"");setCfgClientId(GDRIVE_CONFIG.clientId||"");setCfgSaved(false);setSettingsOpen(true);},"aria-label":"Drive Settings",title:"Google Drive Settings",style:{fontSize:14,position:"relative"}},"\u2699\uFE0F",!(GDRIVE_CONFIG.apiKey&&GDRIVE_CONFIG.clientId)&&/*#__PURE__*/React.createElement("span",{style:{position:"absolute",top:2,right:2,width:7,height:7,borderRadius:"50%",background:"#ef4444",border:"2px solid var(--surface)"}},null))),/*#__PURE__*/React.createElement("div",{className:"main"},/*#__PURE__*/React.createElement("div",{className:"content"},view==="home"&&/*#__PURE__*/React.createElement(Home,{onSelect:navigate}),view==="acquia-sow"&&/*#__PURE__*/React.createElement(AcquiaSOWForm,{onBack:handleBack,onComplete:()=>handleComplete("acquia-sow")}),view==="sow"&&/*#__PURE__*/React.createElement(SOWForm,{onBack:handleBack,onComplete:()=>handleComplete("sow")}),view==="cr"&&/*#__PURE__*/React.createElement(CRForm,{prefill:sowPrefill,onBack:handleBack,onComplete:()=>handleComplete("cr")}),view==="cr-from-sow"&&/*#__PURE__*/React.createElement(CRFromSOW,{onBack:handleBack,onContinue:handleSOWFromSOWContinue}),view==="cr-from-cr"&&/*#__PURE__*/React.createElement(CRFromCR,{onBack:handleBack,onContinue:handleCRFromCRContinue}),view==="help"&&/*#__PURE__*/React.createElement(HelpView,{onBack:handleBack}),view==="success"&&/*#__PURE__*/React.createElement(Success,{type:lastType,onBack:()=>setView("home"),onNew:()=>{setSowPrefill(null);setView(lastType==="sow"?"sow":"cr");},onFollowOnCR:()=>setView("cr-from-cr")})))), settingsOpen&&React.createElement("div",{onClick:function(e){if(e.target===e.currentTarget)setSettingsOpen(false);},style:{position:"fixed",inset:0,background:"rgba(0,0,0,0.55)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center"}},React.createElement("div",{style:{background:"var(--surface)",border:"1px solid var(--border)",borderRadius:14,padding:"28px 32px",width:"min(480px,92vw)",boxShadow:"0 8px 40px rgba(0,0,0,0.25)"}},React.createElement("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:20}},React.createElement("div",null,React.createElement("div",{style:{fontWeight:700,fontSize:16,color:"var(--text)"}},"⚙️ Google Drive Settings"),React.createElement("div",{style:{fontSize:12,color:"var(--text2)",marginTop:3}},"Configure OAuth to browse your Drive files.")),React.createElement("button",{onClick:function(){setSettingsOpen(false);},style:{background:"none",border:"none",fontSize:18,cursor:"pointer",color:"var(--text2)",lineHeight:1}},"×")),(GDRIVE_API_KEY&&GDRIVE_CLIENT_ID)?React.createElement("div",{style:{background:"rgba(16,185,129,0.1)",border:"1px solid rgba(16,185,129,0.3)",borderRadius:8,padding:"10px 14px",marginBottom:14,fontSize:12,color:"#10b981"}},"✓ Credentials hardcoded in index.html — Drive works for all users automatically."):React.createElement("div",{style:{background:"rgba(245,158,11,0.1)",border:"1px solid rgba(245,158,11,0.3)",borderRadius:8,padding:"10px 14px",marginBottom:14,fontSize:12,color:"#d97706"}},"⚠️ Not configured yet — follow steps below, then edit index.html and push to GitHub."),React.createElement("div",{style:{background:"var(--surface2)",border:"1px solid var(--border)",borderRadius:8,padding:"12px 14px",marginBottom:18,fontSize:12,color:"var(--text2)",lineHeight:1.65}},React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:6}},"One-time Google Cloud setup (free):"),React.createElement("ol",{style:{margin:0,paddingLeft:18}},React.createElement("li",null,React.createElement("a",{href:"https://console.cloud.google.com/",target:"_blank",rel:"noreferrer",style:{color:"#4285f4"}},"console.cloud.google.com")," → New Project"),React.createElement("li",null,"Enable ",React.createElement("strong",null,"Google Picker API")," and ",React.createElement("strong",null,"Google Drive API")),React.createElement("li",null,"Credentials → Create ",React.createElement("strong",null,"API Key")," (restrict to Picker API)"),React.createElement("li",null,"Credentials → Create ",React.createElement("strong",null,"OAuth 2.0 Client ID")," (Web app) — add ",React.createElement("code",{style:{background:"rgba(66,133,244,0.1)",padding:"1px 5px",borderRadius:3}},"http://localhost:3000")," and your GitHub Pages URL to Authorised JS origins"),React.createElement("li",null,"Open index.html in VS Code — near the top find the two lines ",React.createElement("code",{style:{background:"rgba(66,133,244,0.1)",padding:"1px 5px",borderRadius:3}},"GDRIVE_API_KEY")," and ",React.createElement("code",{style:{background:"rgba(66,133,244,0.1)",padding:"1px 5px",borderRadius:3}},"GDRIVE_CLIENT_ID"),", paste your values between the single quotes, save, push to GitHub"))),!(GDRIVE_API_KEY&&GDRIVE_CLIENT_ID)&&React.createElement(React.Fragment,null,React.createElement("div",{style:{marginBottom:14}},React.createElement("label",{style:{display:"block",fontSize:12,fontWeight:600,color:"var(--text2)",marginBottom:5}},"API Key"),React.createElement("input",{value:cfgApiKey,onChange:function(e){setCfgApiKey(e.target.value);setCfgSaved(false);},placeholder:"AIzaSy...",style:{width:"100%",boxSizing:"border-box",background:"var(--surface2)",border:"1px solid var(--border)",borderRadius:6,padding:"8px 10px",fontSize:13,color:"var(--text)",fontFamily:"monospace"}})),React.createElement("div",{style:{marginBottom:20}},React.createElement("label",{style:{display:"block",fontSize:12,fontWeight:600,color:"var(--text2)",marginBottom:5}},"OAuth Client ID"),React.createElement("input",{value:cfgClientId,onChange:function(e){setCfgClientId(e.target.value);setCfgSaved(false);},placeholder:"000000.apps.googleusercontent.com",style:{width:"100%",boxSizing:"border-box",background:"var(--surface2)",border:"1px solid var(--border)",borderRadius:6,padding:"8px 10px",fontSize:13,color:"var(--text)",fontFamily:"monospace"}})),React.createElement("div",{style:{display:"flex",alignItems:"center",gap:10}},React.createElement("button",{onClick:saveSettings,disabled:!cfgApiKey.trim()||!cfgClientId.trim(),style:{flex:1,background:"#4285f4",border:"none",borderRadius:7,padding:"10px 0",fontSize:13,fontWeight:600,color:"#fff",cursor:(!cfgApiKey.trim()||!cfgClientId.trim())?"not-allowed":"pointer",opacity:(!cfgApiKey.trim()||!cfgClientId.trim())?0.5:1}},"Save Configuration"),cfgSaved&&React.createElement("span",{style:{fontSize:13,color:"#10b981",fontWeight:600}},"✓ Saved!"))),React.createElement("div",{style:{marginTop:14,fontSize:11,color:"var(--text2)",textAlign:"center",lineHeight:1.5}},"Credentials stored in this browser only. Add localhost and GitHub Pages URL to Google Cloud authorized origins."))));}
+function Home({onSelect, onNavigate}){
+  const cards = [
+    { id: "sow", title: "Partner SOW", desc: "Create a brand new Partner Statement of Work from the standard template.", icon: "\uD83D\uDCC4", badge: "Primary", color: "var(--text)" },
+    { id: "cr", title: "Partner Change Request", desc: "Create a standalone CR from scratch to extend hours or budget.", icon: "\uD83D\uDCCB", badge: "Flexible", color: "var(--text)" },
+    { id: "cr-from-sow", title: "Partner CR from SOW", desc: "Fast-track a CR by importing data from an existing SOW.", icon: "\uD83D\uDD17", badge: "Smart", color: "var(--text)" },
+    { id: "cr-from-cr", title: "Partner CR from CR", desc: "Chain multiple extensions together using a previous CR as baseline.", icon: "\uD83D\uDD01", badge: "Chain", color: "var(--text)" }
+  ];
+
+  return React.createElement("div", { className: "page", style: { maxWidth: 1100 } },
+    /* Hero Section */
+    React.createElement("div", { style: { textAlign: "center", marginBottom: 80, animation: "slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)" } },
+      React.createElement("div", { style: { display: "inline-block", padding: "6px 12px", background: "var(--accent-s)", borderRadius: 99, fontSize: 12, fontWeight: 700, color: "var(--text2)", marginBottom: 24, letterSpacing: "0.05em", textTransform: "uppercase" } }, "Automated Document Generation"),
+      React.createElement("h1", { className: "page-title", style: { fontSize: "clamp(40px, 8vw, 64px)", marginBottom: 24 } }, "Build Documents in Minutes."),
+      React.createElement("p", { className: "page-sub", style: { fontSize: 18, maxWidth: 600, margin: "0 auto 40px" } }, "Generate professional Partner SOWs and Change Requests directly from official templates with zero manual formatting."),
+      React.createElement("div", { style: { display: "flex", gap: 16, justifyContent: "center" } },
+        React.createElement("button", { className: "btn btn-primary", onClick: () => {
+          const el = document.getElementById('templates');
+          if(el) el.scrollIntoView({ behavior: 'smooth' });
+        } }, "Browse Templates"),
+        React.createElement("button", { className: "btn btn-secondary", onClick: () => onNavigate('help') }, "View Guide")
+      )
+    ),
+
+    /* How it Works Section */
+    React.createElement("div", { style: { marginBottom: 100, animation: "slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s backwards" } },
+      React.createElement("div", { className: "form-section-title", style: { justifyContent: "center", marginBottom: 48 } }, "How it Works"),
+      React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 32 } },
+        [
+          { step: "01", title: "Select Template", desc: "Choose between a brand new SOW or a Change Request tailored for Partners." },
+          { step: "02", title: "Input Project Data", desc: "Fill in the guided form. The app handles all calculations for hours, rates, and totals." },
+          { step: "03", title: "Live Preview", desc: "Watch your document update in real-time. What you see is exactly what will be generated." },
+          { step: "04", title: "Instant Export", desc: "Download a perfectly formatted .docx file ready for Microsoft Word and signatures." }
+        ].map((s, i) => 
+          React.createElement("div", { key: i, style: { position: "relative", padding: 32, background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 24, boxShadow: "var(--shadow)" } },
+            React.createElement("div", { style: { fontSize: 40, fontWeight: 800, color: "var(--accent-t)", position: "absolute", top: 20, right: 24, fontFamily: "var(--font-display)" } }, s.step),
+            React.createElement("div", { style: { fontSize: 18, fontWeight: 700, marginBottom: 12, fontFamily: "var(--font-display)" } }, s.title),
+            React.createElement("div", { style: { fontSize: 14, color: "var(--text2)", lineHeight: 1.6 } }, s.desc)
+          )
+        )
+      )
+    ),
+
+    /* Templates Grid */
+    React.createElement("div", { id: "templates", style: { animation: "slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s backwards" } },
+      React.createElement("div", { className: "form-section-title", style: { marginBottom: 32 } }, "Available Templates"),
+      React.createElement("div", { className: "card-grid" },
+        cards.map((c, i) => 
+          React.createElement("div", { 
+            key: c.id, 
+            className: "card", 
+            onClick: () => onSelect(c.id)
+          },
+            React.createElement("div", { className: "card-accent", style: { background: "var(--text)", opacity: 0.05 } }),
+            c.badge && React.createElement("div", { className: "card-badge", style: { background: "var(--surface2)", color: "var(--text2)" } }, c.badge),
+            React.createElement("div", { className: "card-icon", style: { color: "var(--text)" } }, c.icon),
+            React.createElement("div", { className: "card-title" }, c.title),
+            React.createElement("div", { className: "card-desc" }, c.desc),
+            React.createElement("div", { style: { marginTop: "auto", paddingTop: 20, display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 700, color: "var(--text)" } }, 
+              "Get Started ", 
+              React.createElement("span", { style: { fontSize: 18 } }, "\u2192")
+            )
+          )
+        )
+      )
+    ),
+
+    /* Footer Meta */
+    React.createElement("div", { style: { marginTop: 100, paddingTop: 48, borderTop: "1px solid var(--border)", textAlign: "center", color: "var(--text3)", fontSize: 13 } },
+      "Acquia Partner Document Builder \xB7 Standardized Templates \xB7 Precise Calculations"
+    )
+  );
+}
+// ─── SUCCESS ─────────────────────────────────────────────────────────────────
+function Success({type,onBack,onNew,onFollowOnCR}){return/*#__PURE__*/React.createElement("div",{className:"page"},/*#__PURE__*/React.createElement("div",{className:"success-screen"},/*#__PURE__*/React.createElement("div",{className:"success-icon"},"\u2705"),/*#__PURE__*/React.createElement("div",{className:"success-title"},"Document Generated!"),/*#__PURE__*/React.createElement("div",{className:"success-sub"},"Your ",type==="sow"?"Partner Statement of Work":"Partner Change Request"," has been downloaded. Open it in Microsoft Word to review and finalize signatures."),/*#__PURE__*/React.createElement("div",{style:{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}},/*#__PURE__*/React.createElement("button",{className:"btn btn-secondary",onClick:onBack},"\u2190 Back to Home"),/*#__PURE__*/React.createElement("button",{className:"btn btn-primary",onClick:onNew},"Create Another"),type!=="sow"&&/*#__PURE__*/React.createElement("button",{className:"btn",style:{background:"rgba(245,158,11,0.15)",color:"#f59e0b",border:"1px solid rgba(245,158,11,0.3)"},onClick:onFollowOnCR},"\uD83D\uDD01 Create Follow-on CR"))));}
+function HelpView({onBack}){const[open,setOpen]=useState(null);const sections=[{id:"overview",icon:"🏠",title:"Overview",color:"var(--accent)",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"This app lets you generate professional ",/*#__PURE__*/React.createElement("strong",null,"Partner Statements of Work (SOW)")," and ",/*#__PURE__*/React.createElement("strong",null,"Partner Change Requests (CR)")," directly from Acquia's official Word templates \u2014 no manual editing required."),/*#__PURE__*/React.createElement("p",{style:{marginTop:10}},"You fill in a form, the app injects your data into the real ",/*#__PURE__*/React.createElement("code",null,".docx")," template, and you download a ready-to-sign Word document."),/*#__PURE__*/React.createElement("div",{style:{background:"var(--accent-s)",border:"1px solid rgba(79,110,247,0.2)",borderRadius:8,padding:"12px 16px",marginTop:12,fontSize:13,color:"var(--accent)"}},"\uD83D\uDCA1 The live preview on the right updates as you type \u2014 it mirrors the full document structure so you can catch errors before generating."))},{id:"sow",icon:"📄",title:"Creating a Partner SOW",color:"var(--accent)",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"Partner SOW")," when starting a brand-new project. It generates a complete Subcontractor Statement of Work pre-filled with all your project details."),/*#__PURE__*/React.createElement("div",{style:{marginTop:12}},[["Step 1 — Project Details","Enter the effective date, MSA date, subcontractor name, customer name, project name, and contact details."],["Step 2 — Resources","Add each staffed resource: role, name, hours, and rate. The app auto-calculates the total cost per resource."],["Step 3 — Review & Generate","Check the live preview, then click Generate & Download. The .docx file downloads immediately."]].map(([title,desc])=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"var(--text)",color:"var(--bg)",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},["1","2","3"][["Step 1","Step 2","Step 3"].findIndex(s=>title.startsWith(s))]),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc))))))},{id:"cr-scratch",icon:"📋",title:"Creating a Partner CR (from scratch)",color:"#8b5cf6",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"Partner CR")," when you need a standalone Change Request and don't have the SOW data handy."),/*#__PURE__*/React.createElement("div",{style:{marginTop:12}},[["Step 1 — Project Info","Enter customer name, project name, SOW reference, and the new CR number."],["Step 2 — Extension Details","Set dates and add resources with their additional CR hours and rates."],["Step 3 — Impact & Generate","Fill in the effort, timeline, and budget impact summaries, then generate."]].map(([title,desc],i)=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"var(--text)",color:"var(--bg)",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},i+1),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc))))))},{id:"cr-from-sow",icon:"🔗",title:"Partner CR from SOW",color:"#14b8a6",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"Partner CR from SOW")," when an existing project needs to be extended. You enter the original SOW's key details once, and they pre-fill the CR form."),/*#__PURE__*/React.createElement("div",{style:{background:"rgba(20,184,166,0.08)",border:"1px solid rgba(20,184,166,0.2)",borderRadius:8,padding:"12px 16px",marginTop:10,marginBottom:14,fontSize:13,color:"#14b8a6"}},"\u2713 Fields carried forward: customer, project name, SOW reference, dates, and all resources."),[["SOW Reference Screen","Enter the details from the original SOW: customer, project, original budget, and existing resources."],["CR Form","The CR form opens pre-filled. Simply add the new CR number, extended dates, and additional hours."]].map(([title,desc],i)=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"var(--text)",color:"var(--bg)",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},i+1),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc)))))},{id:"cr-from-cr",icon:"🔁",title:"Partner CR from CR (chaining)",color:"#f59e0b",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Use ",/*#__PURE__*/React.createElement("strong",null,"Partner CR from CR")," when a project with previous CRs needs to be extended again. Each CR's totals become the baseline for the next one."),/*#__PURE__*/React.createElement("div",{style:{background:"rgba(245,158,11,0.08)",border:"1px solid rgba(245,158,11,0.2)",borderRadius:8,padding:"12px 16px",marginTop:10,marginBottom:14,fontSize:13,color:"#f59e0b"}},"\uD83D\uDD01 Example chain: SOW \u2192 CR-001 \u2192 CR-002. Build CR-002 using CR-001 as the baseline."),[["Previous CR Screen","Enter the most recent CR's details: current totals, end date, and resources."],["New CR Form","The form opens pre-filled. You only need to enter the new CR number, new end date, and additional hours/budget."]].map(([title,desc],i)=>/*#__PURE__*/React.createElement("div",{key:title,style:{display:"flex",gap:12,marginBottom:14}},/*#__PURE__*/React.createElement("div",{style:{width:20,height:20,borderRadius:"50%",background:"var(--text)",color:"var(--bg)",fontSize:11,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:2}},i+1),/*#__PURE__*/React.createElement("div",null,/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},title),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",fontSize:13}},desc)))))},{id:"output",icon:"📥",title:"Output & .docx Generation",color:"#059669",content:/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("p",null,"Clicking ",/*#__PURE__*/React.createElement("strong",null,"Generate & Download")," produces a ",/*#__PURE__*/React.createElement("code",null,".docx")," file ready for Microsoft Word."),/*#__PURE__*/React.createElement("div",{style:{marginTop:12,display:"flex",flexDirection:"column",gap:10}},[["File name","Named automatically: [SOW/CR]_[ProjectName]_[Date].docx."],["Formatting","All original formatting, headers, footers, and table styles are preserved exactly as in the official templates."],["To convert to PDF","Open in Word and use File \u2192 Export \u2192 PDF for the highest fidelity."]].map(([label,desc])=>/*#__PURE__*/React.createElement("div",{key:label,style:{display:"flex",gap:10,fontSize:13}},/*#__PURE__*/React.createElement("div",{style:{color:"#059669",fontWeight:700,flexShrink:0,minWidth:120}},label),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)"}},desc)))))},{id:"tips",icon:"💡",title:"Tips & Common Questions",color:"var(--text2)",content:/*#__PURE__*/React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:14,fontSize:13}},[["Can I go back and edit?","Yes \u2014 use the Previous button. All data is preserved while you navigate steps within a session."],["Resource auto-calc","In SOW resources, the Total calculates automatically from Hours \u00d7 Rate. In CR resources, leave the Total blank to auto-calculate from New Total Hours \u00d7 Rate."]].map(([q,a])=>/*#__PURE__*/React.createElement("div",{key:q},/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:3}},"Q: ",q),/*#__PURE__*/React.createElement("div",{style:{color:"var(--text2)",paddingLeft:12,borderLeft:"2px solid var(--border)"}},a))))}];return/*#__PURE__*/React.createElement("div",{className:"page",style:{maxWidth:740}},/*#__PURE__*/React.createElement("div",{style:{display:"flex",alignItems:"center",gap:12,marginBottom:6}},/*#__PURE__*/React.createElement("button",{className:"btn btn-secondary btn-sm",onClick:onBack},"\u2190 Back"),/*#__PURE__*/React.createElement("h1",{className:"page-title",style:{margin:0}},"How to Use")),/*#__PURE__*/React.createElement("p",{className:"page-sub"},"Everything you need to know about creating Partner documents"),/*#__PURE__*/React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:8}},sections.map(s=>/*#__PURE__*/React.createElement("div",{key:s.id,style:{background:"var(--surface)",border:`1px solid ${open===s.id?s.color+"44":"var(--border)"}`,borderRadius:10,overflow:"hidden",transition:"border-color 0.2s"}},/*#__PURE__*/React.createElement("div",{style:{display:"flex",alignItems:"center",gap:14,padding:"16px 20px",cursor:"pointer",userSelect:"none"},onClick:()=>setOpen(open===s.id?null:s.id)},/*#__PURE__*/React.createElement("div",{style:{fontSize:22,flexShrink:0}},s.icon),/*#__PURE__*/React.createElement("div",{style:{flex:1}},/*#__PURE__*/React.createElement("div",{style:{fontWeight:600,color:"var(--text)",fontSize:14}},s.title)),/*#__PURE__*/React.createElement("div",{style:{color:open===s.id?s.color:"var(--text3)",fontSize:18,transition:"transform 0.2s",transform:open===s.id?"rotate(180deg)":"none"}},"\u25BE")),open===s.id&&/*#__PURE__*/React.createElement("div",{style:{padding:"0 20px 20px",color:"var(--text2)",fontSize:13,lineHeight:1.7,borderTop:"1px solid var(--border)",paddingTop:16}},s.content)))));}
+// ─── NAV DRAWER ──────────────────────────────────────────────────────────────
+function NavDrawer({open,onClose,view,navigate}){
+  const go=v=>{navigate(v);onClose();};
+  const navItems=[
+    {id:"home",label:"Home",icon:React.createElement(IconHome,null),badge:null},
+    {id:"sow",label:"Partner SOW",icon:React.createElement(IconDoc,null),badge:"SOW"},
+    {id:"cr",label:"Partner CR",icon:React.createElement(IconDoc,null),badge:"CR"},
+    {id:"cr-from-sow",label:"Partner CR from SOW",icon:React.createElement(IconDoc,null),badge:"Smart"},
+    {id:"cr-from-cr",label:"Partner CR from CR",icon:React.createElement(IconDoc,null),badge:"Chain"},
+    {id:"help",label:"How to Use",icon:React.createElement(IconHelp,null),badge:null}
+  ];
+
+  return React.createElement(React.Fragment,null,
+    React.createElement("div",{className:`drawer-overlay ${open?"open":""}`,onClick:onClose}),
+    React.createElement("div",{className:`drawer ${open?"open":""}`},
+      React.createElement("div",{className:"drawer-header"},
+        React.createElement("div",{className:"drawer-logo-text"},"Acquia Doc Builder"),
+        React.createElement("button",{className:"drawer-close",onClick:onClose},React.createElement(IconX,null))
+      ),
+      React.createElement("div",{className:"drawer-body"},
+        React.createElement("div",{className:"drawer-section"},
+          React.createElement("div",{className:"drawer-label"},"Navigation"),
+          navItems.map(item=>
+            React.createElement("div",{key:item.id,className:`drawer-item ${view===item.id?"active":""}`,onClick:()=>go(item.id)},
+              React.createElement("div",{className:"drawer-item-icon"},item.icon),
+              item.label,
+              item.badge && React.createElement("span",{className:"drawer-badge"},item.badge)
+            )
+          )
+        ),
+        React.createElement("div",{className:"drawer-section"},
+          React.createElement("div",{className:"drawer-label"},"Document Types"),
+          React.createElement("div",{style:{padding:"0 16px",fontSize:12,color:"var(--text3)",lineHeight:1.6}},
+            React.createElement("div",{style:{marginBottom:12}},
+              React.createElement("span",{style:{color:"var(--text)",fontWeight:700}},"Partner SOW"),
+              " \u2014 Continuous Delivery Statement of Work"
+            ),
+            React.createElement("div",{style:{marginBottom:12}},
+              React.createElement("span",{style:{color:"var(--text)",fontWeight:700}},"Partner Change Request"),
+              " \u2014 Standalone Change Request"
+            ),
+            React.createElement("div",{style:{marginBottom:12}},
+              React.createElement("span",{style:{color:"var(--text)",fontWeight:700}},"Partner CR from SOW"),
+              " \u2014 Extend a project using SOW data"
+            ),
+            React.createElement("div",null,
+              React.createElement("span",{style:{color:"var(--text)",fontWeight:700}},"Partner CR from CR"),
+              " \u2014 Chain follow-on extensions"
+            )
+          )
+        )
+      ),
+      React.createElement("div",{className:"drawer-footer"},"Acquia Inc. \xB7 Partner Doc Generator")
+    )
+  );
+}
+// ─── ROOT APP ────────────────────────────────────────────────────────────────
+function App(){const[view,setView]=useState("home");const[sowPrefill,setSowPrefill]=useState(null);const[lastType,setLastType]=useState("sow");const[menuOpen,setMenuOpen]=useState(false);const[dark,setDark]=useState(false);useEffect(function(){document.documentElement.setAttribute("data-theme",dark?"dark":"light");},[dark]);const[settingsOpen,setSettingsOpen]=useState(false);const[cfgApiKey,setCfgApiKey]=useState(function(){return GDRIVE_CONFIG.apiKey||"";});const[cfgClientId,setCfgClientId]=useState(function(){return GDRIVE_CONFIG.clientId||"";});const[cfgSaved,setCfgSaved]=useState(false);const saveSettings=function(){saveGDriveConfig({apiKey:cfgApiKey.trim(),clientId:cfgClientId.trim()});setCfgSaved(true);setTimeout(function(){setCfgSaved(false);},2500);};const navigate=v=>{if(v==="cr")setSowPrefill(null);setView(v);};const handleBack=()=>setView("home");const handleComplete=type=>{setLastType(type);setView("success");};const handleSOWFromSOWContinue=sowData=>{setSowPrefill(sowData);setView("cr");};const handleCRFromCRContinue=crData=>{setSowPrefill(crData);setView("cr");};return/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("style",null,styles),/*#__PURE__*/React.createElement(NavDrawer,{open:menuOpen,onClose:()=>setMenuOpen(false),view:view,navigate:navigate}),/*#__PURE__*/React.createElement("div",{className:"app"},/*#__PURE__*/React.createElement("div",{className:"header"},/*#__PURE__*/React.createElement("button",{className:`hamburger ${menuOpen?"open":""}`,onClick:()=>setMenuOpen(o=>!o),"aria-label":"Menu"},/*#__PURE__*/React.createElement("span",null),/*#__PURE__*/React.createElement("span",null),/*#__PURE__*/React.createElement("span",null)),/*#__PURE__*/React.createElement("div",{className:"header-logo",onClick:()=>setView("home"),style:{cursor:"pointer"}},"A"),/*#__PURE__*/React.createElement("div",{className:"header-title",onClick:()=>setView("home"),style:{cursor:"pointer"}},"Acquia Doc Builder"),/*#__PURE__*/React.createElement("div",{className:"header-sub"},"Partner Doc Generator"),/*#__PURE__*/React.createElement("button",{className:"theme-toggle",onClick:()=>setDark(d=>!d),"aria-label":"Toggle theme",title:dark?"Switch to light mode":"Switch to dark mode"},dark?"\u2600\ufe0f":"\uD83C\uDF19"),/*#__PURE__*/React.createElement("button",{className:"theme-toggle",onClick:function(){setCfgApiKey(GDRIVE_CONFIG.apiKey||"");setCfgClientId(GDRIVE_CONFIG.clientId||"");setCfgSaved(false);setSettingsOpen(true);},"aria-label":"Drive Settings",title:"Google Drive Settings",style:{fontSize:14,position:"relative"}},"\u2699\uFE0F",!(GDRIVE_CONFIG.apiKey&&GDRIVE_CONFIG.clientId)&&/*#__PURE__*/React.createElement("span",{style:{position:"absolute",top:2,right:2,width:7,height:7,borderRadius:"50%",background:"#ef4444",border:"2px solid var(--surface)"}},null))),/*#__PURE__*/React.createElement("div",{className:"main"},/*#__PURE__*/React.createElement("div",{className:"content"},view==="home"&&/*#__PURE__*/React.createElement(Home,{onSelect:navigate,onNavigate:setView}),/* view==="acquia-sow"&&React.createElement(AcquiaSOWForm,{onBack:handleBack,onComplete:()=>handleComplete("acquia-sow")}), */view==="sow"&&/*#__PURE__*/React.createElement(SOWForm,{onBack:handleBack,onComplete:()=>handleComplete("sow")}),view==="cr"&&/*#__PURE__*/React.createElement(CRForm,{prefill:sowPrefill,onBack:handleBack,onComplete:()=>handleComplete("cr")}),view==="cr-from-sow"&&/*#__PURE__*/React.createElement(CRFromSOW,{onBack:handleBack,onContinue:handleSOWFromSOWContinue}),view==="cr-from-cr"&&/*#__PURE__*/React.createElement(CRFromCR,{onBack:handleBack,onContinue:handleCRFromCRContinue}),view==="help"&&/*#__PURE__*/React.createElement(HelpView,{onBack:handleBack}),view==="success"&&/*#__PURE__*/React.createElement(Success,{type:lastType,onBack:()=>setView("home"),onNew:()=>{setSowPrefill(null);setView(lastType==="sow"?"sow":"cr");},onFollowOnCR:()=>setView("cr-from-cr")})))), settingsOpen&&React.createElement("div",{onClick:function(e){if(e.target===e.currentTarget)setSettingsOpen(false);},style:{position:"fixed",inset:0,background:"rgba(0,0,0,0.55)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center"}},React.createElement("div",{style:{background:"var(--surface)",border:"1px solid var(--border)",borderRadius:14,padding:"28px 32px",width:"min(480px,92vw)",boxShadow:"0 8px 40px rgba(0,0,0,0.25)"}},React.createElement("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:20}},React.createElement("div",null,React.createElement("div",{style:{fontWeight:700,fontSize:16,color:"var(--text)"}},"⚙️ Google Drive Settings"),React.createElement("div",{style:{fontSize:12,color:"var(--text2)",marginTop:3}},"Configure OAuth to browse your Drive files.")),React.createElement("button",{onClick:function(){setSettingsOpen(false);},style:{background:"none",border:"none",fontSize:18,cursor:"pointer",color:"var(--text2)",lineHeight:1}},"×")),(GDRIVE_API_KEY&&GDRIVE_CLIENT_ID)?React.createElement("div",{style:{background:"rgba(16,185,129,0.1)",border:"1px solid rgba(16,185,129,0.3)",borderRadius:8,padding:"10px 14px",marginBottom:14,fontSize:12,color:"#10b981"}},"✓ Credentials hardcoded in index.html — Drive works for all users automatically."):React.createElement("div",{style:{background:"rgba(245,158,11,0.1)",border:"1px solid rgba(245,158,11,0.3)",borderRadius:8,padding:"10px 14px",marginBottom:14,fontSize:12,color:"#d97706"}},"⚠️ Not configured yet — follow steps below, then edit index.html and push to GitHub."),React.createElement("div",{style:{background:"var(--surface2)",border:"1px solid var(--border)",borderRadius:8,padding:"12px 14px",marginBottom:18,fontSize:12,color:"var(--text2)",lineHeight:1.65}},React.createElement("div",{style:{fontWeight:600,color:"var(--text)",marginBottom:6}},"One-time Google Cloud setup (free):"),React.createElement("ol",{style:{margin:0,paddingLeft:18}},React.createElement("li",null,React.createElement("a",{href:"https://console.cloud.google.com/",target:"_blank",rel:"noreferrer",style:{color:"#4285f4"}},"console.cloud.google.com")," → New Project"),React.createElement("li",null,"Enable ",React.createElement("strong",null,"Google Picker API")," and ",React.createElement("strong",null,"Google Drive API")),React.createElement("li",null,"Credentials → Create ",React.createElement("strong",null,"API Key")," (restrict to Picker API)"),React.createElement("li",null,"Credentials → Create ",React.createElement("strong",null,"OAuth 2.0 Client ID")," (Web app) — add ",React.createElement("code",{style:{background:"rgba(66,133,244,0.1)",padding:"1px 5px",borderRadius:3}},"http://localhost:3000")," and your GitHub Pages URL to Authorised JS origins"),React.createElement("li",null,"Open index.html in VS Code — near the top find the two lines ",React.createElement("code",{style:{background:"rgba(66,133,244,0.1)",padding:"1px 5px",borderRadius:3}},"GDRIVE_API_KEY")," and ",React.createElement("code",{style:{background:"rgba(66,133,244,0.1)",padding:"1px 5px",borderRadius:3}},"GDRIVE_CLIENT_ID"),", paste your values between the single quotes, save, push to GitHub"))),!(GDRIVE_API_KEY&&GDRIVE_CLIENT_ID)&&React.createElement(React.Fragment,null,React.createElement("div",{style:{marginBottom:14}},React.createElement("label",{style:{display:"block",fontSize:12,fontWeight:600,color:"var(--text2)",marginBottom:5}},"API Key"),React.createElement("input",{value:cfgApiKey,onChange:function(e){setCfgApiKey(e.target.value);setCfgSaved(false);},placeholder:"AIzaSy...",style:{width:"100%",boxSizing:"border-box",background:"var(--surface2)",border:"1px solid var(--border)",borderRadius:6,padding:"8px 10px",fontSize:13,color:"var(--text)",fontFamily:"monospace"}})),React.createElement("div",{style:{marginBottom:20}},React.createElement("label",{style:{display:"block",fontSize:12,fontWeight:600,color:"var(--text2)",marginBottom:5}},"OAuth Client ID"),React.createElement("input",{value:cfgClientId,onChange:function(e){setCfgClientId(e.target.value);setCfgSaved(false);},placeholder:"000000.apps.googleusercontent.com",style:{width:"100%",boxSizing:"border-box",background:"var(--surface2)",border:"1px solid var(--border)",borderRadius:6,padding:"8px 10px",fontSize:13,color:"var(--text)",fontFamily:"monospace"}})),React.createElement("div",{style:{display:"flex",alignItems:"center",gap:10}},React.createElement("button",{onClick:saveSettings,disabled:!cfgApiKey.trim()||!cfgClientId.trim(),style:{flex:1,background:"#4285f4",border:"none",borderRadius:7,padding:"10px 0",fontSize:13,fontWeight:600,color:"#fff",cursor:(!cfgApiKey.trim()||!cfgClientId.trim())?"not-allowed":"pointer",opacity:(!cfgApiKey.trim()||!cfgClientId.trim())?0.5:1}},"Save Configuration"),cfgSaved&&React.createElement("span",{style:{fontSize:13,color:"#10b981",fontWeight:600}},"✓ Saved!"))),React.createElement("div",{style:{marginTop:14,fontSize:11,color:"var(--text2)",textAlign:"center",lineHeight:1.5}},"Credentials stored in this browser only. Add localhost and GitHub Pages URL to Google Cloud authorized origins."))));}
+
 
 // mount the App
 (function(){
@@ -3232,4 +3418,4 @@ function App(){const[view,setView]=useState("home");const[sowPrefill,setSowPrefi
 })();
 </script>
 </body>
-</html
+</html>
