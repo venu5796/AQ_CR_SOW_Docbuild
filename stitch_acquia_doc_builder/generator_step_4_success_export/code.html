@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Document Generated Successfully</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#be0039",
+                        "on-surface-variant": "#5d3f40",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "on-error": "#ffffff",
+                        "outline": "#916e70",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#fff0f0",
+                        "on-primary-fixed-variant": "#920029",
+                        "on-secondary-fixed": "#002114",
+                        "primary": "#b60036",
+                        "tertiary-fixed": "#91f5da",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005142",
+                        "tertiary-fixed-dim": "#75d8be",
+                        "on-tertiary-fixed": "#002019",
+                        "error": "#ba1a1a",
+                        "on-background": "#291718",
+                        "surface-bright": "#fff8f7",
+                        "primary-fixed": "#ffdadb",
+                        "surface-variant": "#fcdbdb",
+                        "on-primary-fixed": "#40000d",
+                        "secondary-fixed-dim": "#68dba9",
+                        "surface-container-high": "#ffe1e2",
+                        "surface-dim": "#f3d2d3",
+                        "secondary-fixed": "#85f8c4",
+                        "secondary": "#006c4a",
+                        "surface-container-highest": "#fcdbdb",
+                        "on-secondary-fixed-variant": "#005137",
+                        "primary-container": "#e40046",
+                        "surface-container": "#ffe9e9",
+                        "outline-variant": "#e6bcbe",
+                        "background": "#fff8f7",
+                        "on-primary-container": "#fff7f7",
+                        "inverse-surface": "#402b2c",
+                        "surface": "#fff8f7",
+                        "on-tertiary-container": "#e7fff6",
+                        "on-surface": "#291718",
+                        "on-secondary-container": "#00714e",
+                        "tertiary": "#006755",
+                        "inverse-on-surface": "#ffedec",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb2b7",
+                        "tertiary-container": "#00826c",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#82f5c1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xxl": "64px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "container-max": "1120px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "gutter": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "display-xl": ["Playfair Display"],
+                        "ui-medium": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Literata"],
+                        "body-lg": ["Literata"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "display-xl": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "ui-medium": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "body-lg": ["20px", { "lineHeight": "32px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-lg py-md max-w-container-max mx-auto">
+<div class="font-headline-sm text-headline-sm font-medium text-primary dark:text-primary-fixed-dim">
+                Acquia Canvas
+            </div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80 p-sm rounded flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-lg py-xxl flex flex-col items-center justify-center">
+<div class="w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Left Side: Success Message & Actions -->
+<div class="col-span-1 md:col-span-6 flex flex-col gap-xl">
+<div class="flex flex-col gap-md">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary mb-sm">
+<span class="material-symbols-outlined !text-4xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-background">Document Generated Successfully</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">Your Statement of Work has been finalized and is ready for review or distribution.</p>
+</div>
+<!-- Document Summary Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-lg flex flex-col gap-md transition-colors hover:border-outline">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary !text-3xl" style="font-variation-settings: 'FILL' 0;">description</span>
+<div class="flex flex-col">
+<span class="font-ui-medium text-ui-medium text-on-background">Acme Corp - Website Redesign.docx</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-xs">Generated today • 2.4 MB</span>
+</div>
+</div>
+<div class="h-px bg-outline-variant w-full my-sm"></div>
+<div class="flex flex-col sm:flex-row gap-md">
+<button class="bg-primary text-on-primary font-ui-medium text-ui-medium px-lg py-sm rounded hover:bg-surface-tint transition-colors flex items-center justify-center gap-sm flex-1">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">download</span>
+                            Download .docx
+                        </button>
+<button class="bg-transparent border border-outline-variant text-on-background font-ui-medium text-ui-medium px-lg py-sm rounded hover:bg-surface-container-low transition-colors flex items-center justify-center gap-sm flex-1">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">open_in_new</span>
+                            Open in Docs
+                        </button>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="flex items-center gap-lg pt-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-ui-medium text-ui-medium flex items-center gap-xs group">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+                        Return to Dashboard
+                    </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors font-ui-medium text-ui-medium flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">add</span>
+                        Start New Document
+                    </button>
+</div>
+</div>
+<!-- Right Side: Document Preview Hero -->
+<div class="col-span-1 md:col-span-6 flex justify-end">
+<div class="relative w-full max-w-[480px] aspect-[1/1.2] bg-surface-container-lowest border border-outline-variant rounded-lg p-xl flex flex-col gap-lg overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500 shadow-[0_0_40px_rgba(0,0,0,0.03)] group">
+<!-- Decorative subtle grid background in the preview -->
+<div class="absolute inset-0 bg-[radial-gradient(#e6bcbe_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+<div class="relative z-10">
+<div class="font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant pb-md mb-lg flex justify-between items-center">
+<span>Statement of Work</span>
+<span class="text-primary">CONFIDENTIAL</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-background mb-md">Acme Corp Website Redesign</h2>
+<div class="w-12 h-1 bg-primary mb-lg"></div>
+<div class="space-y-md opacity-70">
+<div class="h-4 bg-surface-container-high rounded w-full"></div>
+<div class="h-4 bg-surface-container-high rounded w-5/6"></div>
+<div class="h-4 bg-surface-container-high rounded w-4/6"></div>
+<br/>
+<div class="h-4 bg-surface-container-high rounded w-full"></div>
+<div class="h-4 bg-surface-container-high rounded w-11/12"></div>
+<div class="h-4 bg-surface-container-high rounded w-full"></div>
+</div>
+</div>
+<!-- Subtle overlay gradient to suggest depth without shadows -->
+<div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-surface-container-lowest to-transparent z-20"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface border-t border-outline-variant dark:border-outline full-width mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-lg py-xl max-w-container-max mx-auto gap-md">
+<div class="font-label-caps text-label-caps text-on-surface">
+                © 2024 Acquia Canvas. All rights reserved.
+            </div>
+<div class="flex items-center gap-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer font-body-md text-body-md" href="#">Terms</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all cursor-pointer font-body-md text-body-md" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

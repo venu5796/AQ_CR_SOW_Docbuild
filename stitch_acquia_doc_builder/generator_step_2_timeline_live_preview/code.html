@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Acquia Canvas - Timeline &amp; Resources</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#fcdbdb",
+                        "on-secondary-container": "#00714e",
+                        "secondary-fixed-dim": "#68dba9",
+                        "on-secondary-fixed": "#002114",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#91f5da",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e6bcbe",
+                        "on-primary-fixed": "#40000d",
+                        "primary-fixed-dim": "#ffb2b7",
+                        "surface": "#fff8f7",
+                        "primary": "#b60036",
+                        "inverse-primary": "#ffb2b7",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#82f5c1",
+                        "tertiary": "#006755",
+                        "surface-container-high": "#ffe1e2",
+                        "surface-container-highest": "#fcdbdb",
+                        "on-primary-fixed-variant": "#920029",
+                        "on-tertiary-fixed-variant": "#005142",
+                        "primary-container": "#e40046",
+                        "background": "#fff8f7",
+                        "secondary": "#006c4a",
+                        "inverse-surface": "#402b2c",
+                        "surface-container": "#ffe9e9",
+                        "surface-container-low": "#fff0f0",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#85f8c4",
+                        "on-background": "#291718",
+                        "surface-tint": "#be0039",
+                        "on-secondary-fixed-variant": "#005137",
+                        "on-surface-variant": "#5d3f40",
+                        "on-surface": "#291718",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fff8f7",
+                        "primary-fixed": "#ffdadb",
+                        "surface-dim": "#f3d2d3",
+                        "on-primary-container": "#fff7f7",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#ffedec",
+                        "tertiary-fixed-dim": "#75d8be",
+                        "outline": "#916e70",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#e7fff6",
+                        "tertiary-container": "#00826c",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#002019"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "unit": "4px",
+                        "gutter": "32px",
+                        "xl": "40px",
+                        "xxl": "64px",
+                        "sm": "8px",
+                        "container-max": "1120px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "canvas-width": "1000px"
+                    },
+                    "fontFamily": {
+                        "space": ["Space Grotesk", "sans-serif"],
+                        "plex": ["IBM Plex Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "body-lg": ["IBM Plex Sans", "sans-serif"],
+                        "body-md": ["IBM Plex Sans", "sans-serif"],
+                        "headline-md": ["Space Grotesk", "sans-serif"],
+                        "headline-sm": ["Space Grotesk", "sans-serif"],
+                        "display-xl": ["Space Grotesk", "sans-serif"],
+                        "headline-lg-mobile": ["Space Grotesk", "sans-serif"],
+                        "label-caps": ["IBM Plex Sans", "sans-serif"],
+                        "headline-lg": ["Space Grotesk", "sans-serif"],
+                        "ui-medium": ["IBM Plex Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["20px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "display-xl": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "ui-medium": ["14px", { "lineHeight": "20px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #b60036;
+            cursor: pointer;
+            border: 2px solid #fff8f7;
+            box-shadow: 0 0 0 1px #b60036;
+        }
+        .custom-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #b60036;
+            cursor: pointer;
+            border: 2px solid #fff8f7;
+            box-shadow: 0 0 0 1px #b60036;
+        }
+        .dot-plot-line {
+            stroke-dasharray: 4;
+            animation: dash 20s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-plex">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-container-low w-full h-16 sticky top-0 z-50 border-b border-outline-variant dark:border-outline">
+<div class="max-w-container-max mx-auto px-gutter flex justify-between items-center w-full h-full">
+<div class="font-space text-headline-sm font-bold text-primary dark:text-inverse-primary cursor-pointer active:opacity-80">
+                Canvas
+            </div>
+<div class="flex items-center gap-md">
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover ml-sm" data-alt="A small, professional headshot of a user with a subtle smile, well-lit studio lighting, minimalist background, editorial photography style, high quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2o41YL88OBliEgRLvGA56us0k-rSdHadcWVs4vDJHpV0TWoRhiXyFKu17LqjQw6OxH8L2NW1gRNFsFhOUFDmJjehSGjNH9X2C8pyMyuedIZgfBWAtClD3NuqWYC1H4tUN_S3rd-eUAyufjTsX4YfZq0ZF68ri-iow_y6B-BqLxSLG-mwPBXDsqUcRbFBTMMgpWGImqQ7VuOaknciBcp6qHxSP5LPFGhuxUllQpXzys3HsNME5ODJOh3UKUKWLZXvMVV9aQve-nNQn"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow max-w-container-max w-full mx-auto px-gutter py-xl flex flex-col md:flex-row gap-xxl relative h-[calc(100vh-140px)]">
+<div class="w-full md:w-1/2 flex flex-col gap-xl overflow-y-auto pr-md">
+<!-- Step Header -->
+<div class="flex flex-col gap-sm border-b border-outline-variant pb-xl">
+<span class="font-mono text-label-caps text-on-surface-variant uppercase tracking-wider">Step 2 of 4</span>
+<h1 class="font-space text-headline-lg text-on-background">Timeline &amp; Resources</h1>
+<p class="font-plex text-body-lg text-on-surface-variant max-w-2xl mt-md">Allocate your team and define the project trajectory. Adjust sliders to see real-time budget implications.</p>
+</div>
+<!-- Project Metadata Summary -->
+<div class="grid grid-cols-2 md:grid-cols-2 gap-gutter p-xl border border-outline-variant bg-surface rounded-none">
+<div class="flex flex-col gap-xs border-l-2 border-primary pl-md">
+<span class="font-plex text-label-caps text-on-surface-variant uppercase">Client</span>
+<span class="font-plex text-body-md text-on-background">Nexus Tech</span>
+</div>
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-md">
+<span class="font-plex text-label-caps text-on-surface-variant uppercase">Target Launch</span>
+<span class="font-mono text-body-md text-on-background">Oct 2024</span>
+</div>
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-md">
+<span class="font-plex text-label-caps text-on-surface-variant uppercase">Duration</span>
+<span class="font-mono text-body-md text-on-background">16 Weeks</span>
+</div>
+<div class="flex flex-col gap-xs border-l border-outline-variant pl-md">
+<span class="font-plex text-label-caps text-on-surface-variant uppercase">Methodology</span>
+<span class="font-plex text-body-md text-on-background">Agile Hybrid</span>
+</div>
+</div>
+<!-- Resource Sliders Section -->
+<div class="flex flex-col gap-xl">
+<h2 class="font-space text-headline-sm border-b border-outline-variant pb-sm">Resource Allocation</h2>
+<div class="flex flex-col gap-lg">
+<div class="flex flex-col items-start justify-between gap-md group">
+<div class="w-full">
+<span class="font-plex text-body-md text-on-background block">Senior Drupal Dev</span>
+<span class="font-mono text-label-caps text-on-surface-variant uppercase">100% Allocation</span>
+</div>
+<div class="w-full flex items-center relative">
+<input class="w-full h-1 bg-outline-variant rounded-full appearance-none custom-slider outline-none" max="100" min="0" style="background: linear-gradient(to right, #b60036 100%, #e6bcbe 100%);" type="range" value="100"/>
+</div>
+<div class="w-full text-right">
+<span class="font-mono text-body-md text-on-surface-variant">$48,000</span>
+</div>
+</div>
+<div class="flex flex-col items-start justify-between gap-md group border-t border-outline-variant pt-lg">
+<div class="w-full">
+<span class="font-plex text-body-md text-on-background block">UI Designer</span>
+<span class="font-mono text-label-caps text-on-surface-variant uppercase">50% Allocation</span>
+</div>
+<div class="w-full flex items-center relative">
+<input class="w-full h-1 bg-outline-variant rounded-full appearance-none custom-slider outline-none" max="100" min="0" style="background: linear-gradient(to right, #b60036 50%, #e6bcbe 50%);" type="range" value="50"/>
+</div>
+<div class="w-full text-right">
+<span class="font-mono text-body-md text-on-surface-variant">$24,000</span>
+</div>
+</div>
+</div>
+<button class="self-start text-primary font-plex text-ui-medium flex items-center gap-sm mt-md hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+            Add Resource
+        </button>
+</div>
+<!-- Timeline Capacity Graph -->
+<div class="flex flex-col gap-xl">
+<h2 class="font-space text-headline-sm border-b border-outline-variant pb-sm">Capacity Timeline</h2>
+<div class="w-full h-48 border border-outline-variant bg-surface rounded-none relative overflow-hidden p-md">
+<svg class="w-full h-full opacity-80" preserveaspectratio="none" viewbox="0 0 1000 200">
+<path class="dot-plot-line" d="M 0 150 C 100 150, 200 50, 300 50 C 400 50, 500 100, 600 100 C 700 100, 800 20, 900 20 L 1000 20" fill="none" stroke="#b60036" stroke-width="2"></path>
+<path d="M 0 150 C 100 150, 200 50, 300 50 C 400 50, 500 100, 600 100 C 700 100, 800 20, 900 20 L 1000 20 L 1000 200 L 0 200 Z" fill="url(#magenta-gradient)" opacity="0.1"></path>
+</svg>
+</div>
+</div>
+<!-- Footer Action Area -->
+<div class="flex flex-col justify-between border-t border-outline-variant pt-xl mt-xl">
+<div class="text-right w-full mb-md">
+<span class="font-plex text-label-caps text-on-surface-variant uppercase block mb-xs">Estimated Total Budget</span>
+<span class="font-mono text-headline-lg text-on-background tracking-tight">$145,000</span>
+</div>
+<div class="flex gap-md w-full">
+<button class="flex-grow bg-transparent text-on-background border border-outline font-plex text-ui-medium px-lg py-sm rounded-none hover:bg-surface-container transition-colors">Back</button>
+<button class="flex-grow bg-primary text-on-primary font-plex text-ui-medium px-lg py-sm rounded-none border border-primary hover:opacity-90 transition-opacity">Continue</button>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 hidden md:flex flex-col h-full border border-outline-variant bg-surface-container-low rounded-none overflow-hidden">
+<div class="bg-surface border-b border-outline-variant p-sm flex items-center justify-between">
+<div class="font-space text-sm font-bold text-on-background flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">description</span>
+            Document Preview
+        </div>
+<div class="font-mono text-xs text-on-surface-variant">Sample_SOW_v2.docx</div>
+</div>
+<div class="flex-grow overflow-y-auto p-xl bg-[#e5e5e5] flex justify-center">
+<!-- Simulated A4 Document -->
+<div class="bg-white w-[210mm] min-h-[297mm] shadow-md p-xxl font-plex text-sm text-on-surface space-y-lg border border-outline-variant">
+<h1 class="font-space text-2xl font-bold border-b border-outline pb-sm mb-lg">Statement of Work</h1>
+<div>
+<h2 class="font-bold mb-xs">1. Project Summary</h2>
+<p class="text-on-surface-variant leading-relaxed">
+                    This Statement of Work (SOW) outlines the scope, deliverables, and timeline for the upcoming corporate website redesign. The objective is to modernize the digital presence and improve user engagement metrics by 25%.
+                </p>
+</div>
+<div>
+<h2 class="font-bold mb-xs">2. Target Audience</h2>
+<p class="text-on-surface-variant leading-relaxed">
+                    The primary audience consists of enterprise IT decision-makers and marketing directors in the B2B SaaS sector.
+                </p>
+</div>
+<div>
+<h2 class="font-bold mb-xs">3. Key Deliverables</h2>
+<ul class="list-disc pl-md text-on-surface-variant space-y-xs">
+<li>Comprehensive UX/UI Audit</li>
+<li>Wireframes and High-Fidelity Mockups</li>
+<li>Front-end Development (HTML/CSS/JS)</li>
+</ul>
+</div>
+</div>
+</div>
+</div></main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-background w-full py-xl border-t border-outline-variant dark:border-outline mt-auto">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center">
+<div class="font-space text-headline-sm text-primary dark:text-inverse-primary mb-md md:mb-0">
+                Canvas
+            </div>
+<div class="font-plex text-body-md text-on-surface-variant dark:text-on-surface-variant text-center md:text-left mb-md md:mb-0">
+                © 2024 Acquia Canvas. All rights reserved.
+            </div>
+<nav class="flex gap-lg">
+<a class="font-plex text-body-md text-on-surface-variant dark:text-on-surface-variant opacity-100 hover:opacity-80 hover:text-primary underline decoration-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-plex text-body-md text-on-surface-variant dark:text-on-surface-variant opacity-100 hover:opacity-80 hover:text-primary underline decoration-primary transition-all" href="#">Terms of Service</a>
+<a class="font-plex text-body-md text-on-surface-variant dark:text-on-surface-variant opacity-100 hover:opacity-80 hover:text-primary underline decoration-primary transition-all" href="#">Documentation</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Simple slider background update logic
+        const sliders = document.querySelectorAll('input[type="range"]');
+        sliders.forEach(slider => {
+            slider.addEventListener('input', function() {
+                const value = this.value;
+                this.style.background = `linear-gradient(to right, #b60036 ${value}%, #e6bcbe ${value}%)`;
+                // In a real app, this would recalculate the budget
+            });
+        });
+    </script>
+</body></html>

@@ -1,6 +1,16 @@
 # Acquia SOW/CR Document Generator - Layout & Design
 
-## Latest Updates (2026-06-19)
+## Latest Updates (2026-06-29)
+
+### ✅ CR Preview Dynamic Title
+- Preview panel heading now shows `"Change Request [CR#] for Professional Services"`
+- Updates live as CR# is typed; falls back to `"Change Request for Professional Services"` when empty
+- `buildCRTitle(crno)` added to `dates.js`; used only in `CRPreview.jsx`
+- Left panel form titles unchanged
+
+**Files**: `src/utils/dates.js` (line 24), `src/components/CRPreview.jsx` (line 11, 32)
+
+## Previous Updates (2026-06-19)
 
 ### ✅ Topnav Logo Redesign
 - Replaced text badge ("A" + "Doc Builder") with image logo (logo2.png)
@@ -182,11 +192,10 @@
 ## Future Enhancements
 
 ### High Priority
-1. Remove Google Auth gate — make app publicly accessible without sign-in
-2. Drag-and-drop file uploads (currently click-only)
-3. PDF export from preview panel
-4. Auto-save drafts to localStorage
-5. Keyboard shortcuts for form navigation
+1. Drag-and-drop file uploads (currently click-only)
+2. PDF export from preview panel
+3. Auto-save drafts to localStorage
+4. Keyboard shortcuts for form navigation
 
 ### Medium Priority
 5. Real-time collaboration indicators
